@@ -28,7 +28,7 @@ class StoreUserRequest extends FormRequest
             'password' => [
                 'required',
                 Password::min(8)
-                ->letters()
+                    ->letters()
             ]
 
         ];

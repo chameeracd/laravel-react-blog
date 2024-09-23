@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
@@ -15,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         return UserResource::collection(
-            User::query()->orderBy('id','desc')->get()
+            User::query()->orderBy('id', 'desc')->get()
         );
     }
 
@@ -27,7 +28,7 @@ class UserController extends Controller
         $data = $request->validated();
         $data['password'] = bcrypt($data['password']);
         $user = User::create($data);
-        return response(new UserResource($user),201);
+        return response(new UserResource($user), Response::HTTP_CREATED);
     }
 
     /**
@@ -44,7 +45,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $data = $request->validated();
-        if(isset($data['password'])){
+        if (isset($data['password'])) {
             $data['password'] = bcrypt($data['password']);
         }
         $user->update($data);
@@ -58,6 +59,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return response('',204);
+        return response('', Response::HTTP_NO_CONTENT);
     }
 }

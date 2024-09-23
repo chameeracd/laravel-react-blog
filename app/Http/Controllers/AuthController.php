@@ -13,8 +13,8 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $data = $request->validated();
-        
-        if(!Auth::attempt($data)){
+
+        if (!Auth::attempt($data)) {
             return response([
                 'message' => 'email or password are wrong'
             ]);
@@ -26,7 +26,6 @@ class AuthController extends Controller
             'user' => $user,
             'token' => $token
         ]);
-
     }
 
     public function register(RegisterRequest $request)
@@ -53,6 +52,6 @@ class AuthController extends Controller
 
         $user->currentAccessToken()->delete();
 
-        return response('',204);
+        return response('', 204);
     }
 }
