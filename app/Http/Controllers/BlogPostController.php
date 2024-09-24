@@ -7,9 +7,17 @@ use App\Http\Requests\UpdateBlogPostRequest;
 use App\Http\Resources\BlogPostResource;
 use App\Models\BlogPost;
 use Illuminate\Http\Response;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class BlogPostController extends Controller
 {
+    use AuthorizesRequests;
+
+    public function __construct()
+    {
+        $this->authorizeResource(BlogPost::class, 'blog_post');
+    }
+
     /**
      * Display a listing of the resource.
      */
