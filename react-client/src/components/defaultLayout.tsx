@@ -23,6 +23,11 @@ export default function DefaultLayout() {
         });
     }, []);
 
+    let isAdmin = false;
+    if (user.roles) {
+        isAdmin = user.roles.includes("admin");
+    }
+
     return (
         <div id="defaultLayout">
             <div className="content">
@@ -30,6 +35,12 @@ export default function DefaultLayout() {
                     <div>Blog</div>
                     <div>
                         {user.name}
+                        {isAdmin && (
+                            <a href="/users" className="btn-logout">
+                                {" "}
+                                Users
+                            </a>
+                        )}
                         <a href="#" onClick={onLogout} className="btn-logout">
                             {" "}
                             Logout
