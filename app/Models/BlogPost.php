@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class BlogPost extends Model
+class BlogPost extends Model implements HasMedia
 {
-    use HasFactory, BlameableTrait;
+    use HasFactory, BlameableTrait, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.

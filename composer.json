@@ -11,6 +11,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "richan-fongdasen/eloquent-blameable": "^1.10",
+        "spatie/laravel-medialibrary": "^11.9",
         "spatie/laravel-permission": "^6.9"
     },
     "require-dev": {

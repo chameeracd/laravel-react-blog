@@ -24,6 +24,7 @@ class UpdateBlogPostRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'content' => 'string',
+            'image' => 'nullable|image',
         ];
     }
 }

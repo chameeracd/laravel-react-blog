@@ -35,6 +35,11 @@ class BlogPostController extends Controller
     {
         $data = $request->validated();
         $blogPost = BlogPost::create($data);
+
+        if ($request->hasFile('image')) {
+            $blogPost->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+
         return response(new BlogPostResource($blogPost), Response::HTTP_CREATED);
     }
 
@@ -53,6 +58,12 @@ class BlogPostController extends Controller
     {
         $data = $request->validated();
         $blogPost->update($data);
+
+        if ($request->hasFile('image')) {
+            $blogPost->clearMediaCollection('images');
+            $blogPost->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+
         return new BlogPostResource($blogPost);
     }
 
