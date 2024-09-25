@@ -70,8 +70,13 @@ export default function posts() {
                                 <h4>
                                     <b>{p.title}</b>
                                 </h4>
-                                <p>{p.content}</p>
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: p.content,
+                                    }}
+                                ></div>
                             </div>
+                            <p>{p.created_at} by {p.created_by}</p>
                         </div>
                     ))}
 

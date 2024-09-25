@@ -56,6 +56,7 @@ export default function register() {
                     <p className="message">
                         Already Have An Account? <Link to="/login">Login</Link>
                     </p>
+                    <p className="message"><Link to="/posts">View Posts</Link></p>
                 </form>
             </div>
         </div>

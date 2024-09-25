@@ -54,6 +54,7 @@ export default function login() {
                         Not Registered?{" "}
                         <Link to="/register">Create a new account</Link>
                     </p>
+                    <p className="message"><Link to="/posts">View Posts</Link></p>
                 </form>
             </div>
         </div>

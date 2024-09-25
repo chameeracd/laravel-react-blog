@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class BlogPostResource extends JsonResource
 {
@@ -19,6 +20,8 @@ class BlogPostResource extends JsonResource
             'title' => $this->title,
             'content' => $this->content,
             'image' => $this->getFirstMedia('images'),
+            'created_at' => Carbon::parse($this->created_at)->diffForHumans(),
+            'created_by' => $this->createdBy->name,
         ];
     }
 }
