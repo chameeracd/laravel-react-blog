@@ -4,6 +4,7 @@ import Register from "./views/auth/register.tsx";
 import DefaultLayout from "./components/defaultLayout.tsx";
 import GuestLayout from "./components/guestLayout.tsx";
 import Users from "./views/user/users.tsx";
+import Posts from "./views/post/posts.tsx";
 import UserForm from "./views/user/userForm.tsx";
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />,
+            },
+            {
+                path: "/posts",
+                element: <Posts />,
             },
         ],
     },
