@@ -53,7 +53,7 @@ export default function BlogForm() {
                     },
                 })
                 .then(() => {
-                    navigate("/blogs");
+                    navigate("/");
                 })
                 .catch((err) => {
                     const response = err.response;

@@ -1,12 +1,18 @@
 import { useRef } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Navigate, useNavigate, Link } from "react-router-dom";
 import axiosClient from "../../axiosClient";
 import { useStateContext } from "../../contexts/contextProvider";
 
 export default function login() {
+    const { token } = useStateContext();
+    if (token) {
+        return <Navigate to="/" />;
+    }
+
     const emailRef = useRef();
     const passwordRef = useRef();
+    const navigate = useNavigate();
     const [errors, setErrors] = useState(null);
 
     const { setUser, setToken } = useStateContext();
@@ -22,6 +28,8 @@ export default function login() {
             .then(({ data }) => {
                 setUser(data.user);
                 setToken(data.token);
+
+                navigate("/");
             })
             .catch((err) => {
                 const response = err.response;
@@ -54,7 +62,9 @@ export default function login() {
                         Not Registered?{" "}
                         <Link to="/register">Create a new account</Link>
                     </p>
-                    <p className="message"><Link to="/posts">View Posts</Link></p>
+                    <p className="message">
+                        <Link to="/posts">View Posts</Link>
+                    </p>
                 </form>
             </div>
         </div>

@@ -57,27 +57,31 @@ export default function posts() {
             {!loading && (
                 <div className="flex-container">
                     {posts?.data?.map((p) => (
-                        <div key={p.id} className="card">
-                            {p.image ? (
-                                <img
-                                    className="thumb"
-                                    src={p.image?.original_url}
-                                />
-                            ) : (
-                                <img className="thumb" src={blankImg} />
-                            )}
-                            <div className="container">
-                                <h4>
-                                    <b>{p.title}</b>
-                                </h4>
-                                <div
-                                    dangerouslySetInnerHTML={{
-                                        __html: p.content,
-                                    }}
-                                ></div>
+                        
+                            <div
+                                key={p.id}
+                                className="card"
+                                style={{ display: "block" }}
+                            >
+                                {p.image ? (
+                                    <img
+                                        className="thumb"
+                                        src={p.image?.original_url}
+                                    />
+                                ) : (
+                                    <img className="thumb" src={blankImg} />
+                                )}
+                                <div className="container">
+                                    <h4>
+                                        <b>{p.title}</b>
+                                    </h4>
+                                    <Link key={p.id} to={`/posts/${p.id}`}>Read More</Link>
+                                </div>
+                                <p>
+                                    {p.created} by {p.created_by}
+                                </p>
                             </div>
-                            <p>{p.created} by {p.created_by}</p>
-                        </div>
+                        
                     ))}
 
                     <div className="page-container">

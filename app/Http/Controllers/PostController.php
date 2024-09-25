@@ -14,4 +14,12 @@ class PostController extends Controller
     {
         return BlogPostResource::collection(BlogPost::query()->orderBy('created_at', 'desc')->paginate(env("PAGE_SIZE", 9)));
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(BlogPost $blogPost)
+    {
+        return new BlogPostResource($blogPost);
+    }
 }

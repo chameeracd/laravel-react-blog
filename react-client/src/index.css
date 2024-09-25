@@ -30,7 +30,8 @@ body {
     background-color: #f6f6f6;
 }
 
-input, textarea {
+input,
+textarea {
     outline: 0;
     background: #ffffff;
     width: 100%;
@@ -42,7 +43,8 @@ input, textarea {
     transition: all 0.3s;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
     border-color: #5b08a7;
 }
 

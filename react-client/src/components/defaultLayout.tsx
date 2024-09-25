@@ -43,6 +43,7 @@ export default function DefaultLayout() {
                                 Users
                             </a>
                         )}
+                        <a href="/posts" className="btn-logout">Posts</a>
                         <a href="#" onClick={onLogout} className="btn-logout">
                             {" "}
                             Logout

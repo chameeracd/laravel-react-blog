@@ -5,6 +5,7 @@ import DefaultLayout from "./components/defaultLayout.tsx";
 import GuestLayout from "./components/guestLayout.tsx";
 import Users from "./views/user/users.tsx";
 import Posts from "./views/post/posts.tsx";
+import SinglePost from "./views/post/singlePost.tsx";
 import Blogs from "./views/post/blogs.tsx";
 import UserForm from "./views/user/userForm.tsx";
 import BlogForm from "./views/post/blogForm.tsx";
@@ -40,7 +41,6 @@ const router = createBrowserRouter([
             },
         ],
     },
-
     {
         path: "/",
         element: <GuestLayout />,
@@ -56,6 +56,10 @@ const router = createBrowserRouter([
             {
                 path: "/posts",
                 element: <Posts />,
+            },
+            {
+                path: "posts/:id",
+                element: <SinglePost />,
             },
         ],
     },
