@@ -5,7 +5,7 @@ Laravel 11 React app for Blog Application
 ## Setup
 
 ```
-git clone git@github.com:chameeracd/laravel-react-blog.git
+git clone https://github.com/chameeracd/laravel-react-blog.git
 cd laravel-react-blog
 composer update
 composer install
