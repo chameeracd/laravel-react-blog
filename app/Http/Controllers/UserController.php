@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Response;
+use Auth;
 
 class UserController extends Controller
 {
@@ -16,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         return UserResource::collection(
-            User::query()->orderBy('id', 'desc')->get()
+            User::query()->orderBy('id', 'desc')->paginate(env("PAGE_SIZE", 9))
         );
     }
 
@@ -57,6 +58,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if ($user->id == Auth::user()->id) {
+            return;
+        }
         $user->delete();
 
         return response('', Response::HTTP_NO_CONTENT);

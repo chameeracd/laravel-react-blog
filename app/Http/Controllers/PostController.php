@@ -12,7 +12,6 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = BlogPost::query()->orderBy('id', 'desc')->paginate(3);
-        return BlogPostResource::collection($posts);
+        return BlogPostResource::collection(BlogPost::query()->orderBy('created_at', 'desc')->paginate(env("PAGE_SIZE", 9)));
     }
 }

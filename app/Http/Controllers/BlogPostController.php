@@ -8,6 +8,7 @@ use App\Http\Resources\BlogPostResource;
 use App\Models\BlogPost;
 use Illuminate\Http\Response;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Auth;
 
 class BlogPostController extends Controller
 {
@@ -24,7 +25,7 @@ class BlogPostController extends Controller
     public function index()
     {
         return BlogPostResource::collection(
-            BlogPost::query()->orderBy('id', 'desc')->get()
+            BlogPost::where('created_by', '=', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(env("PAGE_SIZE", 9))
         );
     }
 

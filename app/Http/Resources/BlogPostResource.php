@@ -20,7 +20,8 @@ class BlogPostResource extends JsonResource
             'title' => $this->title,
             'content' => $this->content,
             'image' => $this->getFirstMedia('images'),
-            'created_at' => Carbon::parse($this->created_at)->diffForHumans(),
+            'created' => Carbon::parse($this->created_at)->diffForHumans(),
+            'created_at' => Carbon::parse($this->created_at)->toDayDateTimeString(),
             'created_by' => $this->createdBy->name,
         ];
     }

@@ -3,30 +3,30 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axiosClient from "../../axiosClient";
 
-export default function users() {
-    const [users, setUsers] = useState([]);
+export default function posts() {
+    const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        getUsers();
+        getPosts();
     }, []);
 
-    const onDeleteClick = (user) => {
-        if (!window.confirm("Are you sure you want to delete this user?")) {
+    const onDeleteClick = (blog) => {
+        if (!window.confirm("Are you sure you want to delete this blog?")) {
             return;
         }
-        axiosClient.delete(`/users/${user.id}`).then(() => {
-            getUsers();
+        axiosClient.delete(`/blog-posts/${blog.id}`).then(() => {
+            getPosts();
         });
     };
 
-    const getUsers = (page) => {
+    const getPosts = (page) => {
         setLoading(true);
         axiosClient
-            .get(`/users?page=${page}`)
+            .get(`/blog-posts?page=${page}`)
             .then(({ data }) => {
                 setLoading(false);
-                setUsers(data);
+                setPosts(data);
             })
             .catch(() => {
                 setLoading(false);
@@ -35,13 +35,13 @@ export default function users() {
 
     const fetchNextPrevPages = (link) => {
         const url = new URL(link);
-        getUsers(url.searchParams.get("page"));
+        getPosts(url.searchParams.get("page"));
     };
 
     const renderPaginationLinks = () => {
         return (
             <ul className="pagination">
-                {users?.meta?.links?.map((link, index) => (
+                {posts?.meta?.links?.map((link, index) => (
                     <li key={index} className="page-item">
                         <a
                             style={{ cursor: "pointer" }}
@@ -69,8 +69,8 @@ export default function users() {
                     alignItems: "center",
                 }}
             >
-                <h1>Users</h1>
-                <Link className="btn-add" to="/users/new">
+                <h1>Blogs</h1>
+                <Link className="btn-add" to="/new">
                     Add new
                 </Link>
             </div>
@@ -79,8 +79,8 @@ export default function users() {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>Title</th>
+                            <th>Created</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -95,15 +95,15 @@ export default function users() {
                     )}
                     {!loading && (
                         <tbody>
-                            {users?.data?.map((u) => (
+                            {posts?.data?.map((u) => (
                                 <tr key={u.id}>
                                     <td>{u.id}</td>
-                                    <td>{u.name}</td>
-                                    <td>{u.email}</td>
+                                    <td>{u.title}</td>
+                                    <td>{u.created_at}</td>
                                     <td>
                                         <Link
                                             className="btn-edit"
-                                            to={"/users/" + u.id}
+                                            to={"/" + u.id}
                                         >
                                             Edit
                                         </Link>
@@ -122,8 +122,8 @@ export default function users() {
                 </table>
                 <div className="page-container">
                     <div>
-                        Showing {users?.meta?.from} to {users?.meta?.to} from{" "}
-                        {users?.meta?.total} results.
+                        Showing {posts?.meta?.from} to {posts?.meta?.to} from{" "}
+                        {posts?.meta?.total} results.
                     </div>
                     &nbsp;
                     <div>{renderPaginationLinks()}</div>

@@ -5,7 +5,9 @@ import DefaultLayout from "./components/defaultLayout.tsx";
 import GuestLayout from "./components/guestLayout.tsx";
 import Users from "./views/user/users.tsx";
 import Posts from "./views/post/posts.tsx";
+import Blogs from "./views/post/blogs.tsx";
 import UserForm from "./views/user/userForm.tsx";
+import BlogForm from "./views/post/blogForm.tsx";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +25,18 @@ const router = createBrowserRouter([
             {
                 path: "/users/:id",
                 element: <UserForm key="userUpdate" />,
+            },
+            {
+                path: "/",
+                element: <Blogs />,
+            },
+            {
+                path: "/new",
+                element: <BlogForm key="blogCreate" />,
+            },
+            {
+                path: "/:id",
+                element: <BlogForm key="blogUpdate" />,
             },
         ],
     },

@@ -30,7 +30,7 @@ body {
     background-color: #f6f6f6;
 }
 
-input {
+input, textarea {
     outline: 0;
     background: #ffffff;
     width: 100%;
@@ -42,7 +42,7 @@ input {
     transition: all 0.3s;
 }
 
-input:focus {
+input:focus, textarea:focus {
     border-color: #5b08a7;
 }
 
@@ -109,7 +109,7 @@ table {
 }
 
 table > thead > tr > th {
-    text-align: left;
+    text-align: center;
     padding: 0.5rem 0.5rem;
     background-color: #efefef;
 }

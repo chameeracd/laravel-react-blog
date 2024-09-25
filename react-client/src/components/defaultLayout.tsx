@@ -32,7 +32,9 @@ export default function DefaultLayout() {
         <div id="defaultLayout">
             <div className="content">
                 <header>
-                    <div>Blog</div>
+                    <div>
+                        <a href="/">Blog</a>
+                    </div>
                     <div>
                         {user.name}
                         {isAdmin && (

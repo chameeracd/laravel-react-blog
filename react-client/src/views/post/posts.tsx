@@ -25,7 +25,7 @@ export default function posts() {
             });
     };
 
-    const fetchNextPrevTasks = (link) => {
+    const fetchNextPrevPages = (link) => {
         const url = new URL(link);
         getPosts(url.searchParams.get("page"));
     };
@@ -40,7 +40,7 @@ export default function posts() {
                             className={`page-link ${
                                 link.active ? "active" : ""
                             }`}
-                            onClick={() => fetchNextPrevTasks(link.url)}
+                            onClick={() => fetchNextPrevPages(link.url)}
                         >
                             {link.label
                                 .replace("&laquo;", "")
@@ -76,7 +76,7 @@ export default function posts() {
                                     }}
                                 ></div>
                             </div>
-                            <p>{p.created_at} by {p.created_by}</p>
+                            <p>{p.created} by {p.created_by}</p>
                         </div>
                     ))}
 
