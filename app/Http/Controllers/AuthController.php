@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -15,9 +16,7 @@ class AuthController extends Controller
         $data = $request->validated();
 
         if (!Auth::attempt($data)) {
-            return response([
-                'message' => 'email or password are wrong'
-            ]);
+            return response(['errors' => ['username' => ['email or password are wrong']]], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         $user = Auth::user();
         $token = $user->createToken('main')->plainTextToken;
